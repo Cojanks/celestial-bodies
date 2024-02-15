@@ -80,7 +80,7 @@ function DataTable() {
     getOrbitClassifications(range).join(',')
   );
 
-  if (rangedBodiesLoading) return <Loader numBars={6} />;
+  if (rangedBodiesLoading) return <Loader numBars={6} type={'fit'} />;
 
   return (
     <ConfigProvider

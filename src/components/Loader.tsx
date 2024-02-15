@@ -28,6 +28,10 @@ const LoaderContainerFill = styled.div`
     flex-direction: column;
     margin-top: calc(50vh - 141px);
   }
+
+  &.fit {
+    justify-content: center;
+  }
 `;
 
 const LoaderContainer = styled.div<{ $numBars: number }>`
