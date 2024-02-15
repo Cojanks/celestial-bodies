@@ -9,7 +9,7 @@ import styled from 'styled-components';
 type RawData = [number, ...string[]][];
 
 interface DataType {
-  spkid: number;
+  key: number;
   bodyName: string;
   classification: string;
   neo: string;
@@ -21,28 +21,33 @@ const columns: TableProps<DataType>['columns'] = [
   {
     title: 'Name',
     dataIndex: 'bodyName',
+    key: 'bodyName',
   },
   {
     title: 'Orbit Classification',
     dataIndex: 'classification',
+    key: 'classification',
   },
   {
     title: 'Near Earth Object',
     dataIndex: 'neo',
+    key: 'neo',
   },
   {
     title: 'Potentially Hazardous Astroid',
     dataIndex: 'pha',
+    key: 'pha',
   },
   {
     title: 'Closest approach to Earth (au)',
     dataIndex: 'moid',
+    key: 'moid',
   },
 ];
 
 function convertToDataForTable(data: RawData) {
   const formattedData: DataType[] = data.map((item) => ({
-    spkid: item[0],
+    key: item[0],
     bodyName: item[1],
     classification: item[2],
     neo: item[3],
