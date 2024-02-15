@@ -1,5 +1,5 @@
 export const PlanetaryDistances = [
-  { name: 'Mercurcy', distance: 0.38 },
+  { name: 'Mercury', distance: 0.38 },
   { name: 'Venus', distance: 0.72 },
   { name: 'Earth', distance: 1 },
   { name: 'Mars', distance: 1.52 },

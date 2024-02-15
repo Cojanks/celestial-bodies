@@ -13,10 +13,10 @@ const ButtonContainer = styled.button`
   cursor: pointer;
   font-size: 0.9rem;
 
-  padding: 2px 10px 4px 10px;
+  padding: 3px 11px 5px 11px;
   color: var(--color-text);
   border: 1px solid var(--color-text);
-  border-radius: 5px;
+  border-radius: 7px;
   transition: ease 0.2s transform;
 
   &.active {
@@ -27,6 +27,7 @@ const ButtonContainer = styled.button`
 
   &:hover:not([disabled]) {
     transform: scale(1.1);
+    background-color: var(--color-grey-800);
   }
 
   &:disabled {

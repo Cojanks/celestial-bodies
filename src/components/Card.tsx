@@ -12,7 +12,7 @@ const SectionDiv = styled.section`
   border-radius: 10px;
   text-align: left;
 
-  &.centered {
+  &.center {
     text-align: center;
   }
 
@@ -23,11 +23,7 @@ const SectionDiv = styled.section`
 
 function Card({ children, alignment = 'left' }: CardType) {
   return (
-    <SectionDiv
-      className={`${
-        alignment === 'center' && 'centered' + alignment === 'right' && 'right'
-      }`}
-    >
+    <SectionDiv className={`${alignment !== 'left' && alignment}`}>
       {children}
     </SectionDiv>
   );
