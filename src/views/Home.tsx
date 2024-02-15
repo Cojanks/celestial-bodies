@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import RangeSlider from '../components/RangeSlider';
 import Card from '../components/Card';
-import { useGetBodies } from '../services/openSystemAPI';
+import { useGetBodiesCount } from '../services/openSystemAPI';
 
 const HomeContainer = styled.main`
   text-align: center;
@@ -16,11 +16,11 @@ const Subheader = styled.p`
 `;
 
 function Home() {
-  const { bodiesLoading, bodiesData, bodiesError } = useGetBodies();
+  const { bodiesLoading, bodiesData, bodiesError } = useGetBodiesCount();
 
-  console.log(bodiesLoading);
-  console.log(bodiesData);
-  console.log(bodiesError);
+  // console.log(bodiesLoading);
+  // console.log(bodiesData);
+  // console.log(bodiesError);
 
   // if (bodiesLoading) return <div>loading...</div>;
   // if (bodiesError) return <div>error</div>;
@@ -30,14 +30,24 @@ function Home() {
       <h1>Welcome to Sol</h1>
       <p>
         It sure is a busy system out there! Planning on a trip from one gravity
-        well to another? Check your route here to see a list of currently tagged
-        small travellers are also out there and plan accordingly.
+        well to another? Select an area of the system to see all currently
+        tagged small travellers.
       </p>
 
       {/* <BodyPicker /> */}
       <Card>
         <h3>Small Body Query Interface</h3>
-        <Subheader>Would you like to know more?</Subheader>
+        {bodiesData && (
+          <Subheader>
+            Total solar bodies:{' '}
+            <span className="highlight">{bodiesData.count}</span>
+          </Subheader>
+        )}
+
+        {bodiesLoading && (
+          <Subheader>Counting current solar bodies...</Subheader>
+        )}
+
         <RangeSlider />
       </Card>
     </HomeContainer>

@@ -1,27 +1,89 @@
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import styled from 'styled-components';
+import Button from './Button';
+import { useState } from 'react';
+import { PlanetaryDistances } from '../data/distances';
 
 const SliderWrapper = styled.div`
   display: block;
   position: relative;
-  padding: 30px 5px;
+  padding: 30px 0px 30px;
+`;
+
+const HeaderSection = styled.div`
+  margin-bottom: 40px;
+  display: flex;
+  gap: 13px;
 `;
 
 function RangeSlider() {
+  const [view, setview] = useState<'sol' | 'inner' | 'belt'>('inner');
+
+  const plantaryList =
+    view === 'sol'
+      ? PlanetaryDistances
+      : view === 'inner'
+      ? PlanetaryDistances.slice(0, 4)
+      : PlanetaryDistances.slice(2, 6);
+
+  const stepDistance = view === 'sol' ? 0.1 : 0.01;
+
+  function generatePlanetMarks() {
+    return plantaryList.reduce(
+      (acc, curr) => ({
+        ...acc,
+        [curr.distance]: { label: curr.name },
+      }),
+      {}
+    );
+  }
+
   function handleRangeChange(values: number | number[]) {
     console.log('change complete');
     console.log(values);
   }
 
+  function handleChangeView(view: 'sol' | 'inner' | 'belt') {
+    console.log('view change');
+    setview(view);
+  }
+
   return (
     <SliderWrapper>
+      <HeaderSection>
+        Quick View:
+        <Button
+          isActive={view === 'inner'}
+          handleOnClick={() => {
+            handleChangeView('inner');
+          }}
+        >
+          Inner Planets
+        </Button>
+        <Button
+          isActive={view === 'belt'}
+          handleOnClick={() => {
+            handleChangeView('belt');
+          }}
+        >
+          The Belt
+        </Button>
+        <Button disabled={true}>Jovian Orbit (coming soon)</Button>
+        <Button
+          isActive={view === 'sol'}
+          handleOnClick={() => {
+            handleChangeView('sol');
+          }}
+        >
+          Sol System
+        </Button>
+      </HeaderSection>
       <Slider
         range
-        defaultValue={[0, 20]}
-        min={0}
-        max={30.2}
-        step={0.1}
+        min={plantaryList[0].distance - 0.38}
+        max={plantaryList[plantaryList.length - 1].distance + 0.38}
+        step={stepDistance}
         styles={{
           rail: { backgroundColor: 'var(--color-grey-600)' },
           track: {
@@ -42,22 +104,7 @@ function RangeSlider() {
           backgroundColor: 'var(--color-grey-400)',
           border: '1px solid var(--color-grey-500)',
         }}
-        marks={{
-          0.38: {
-            label: <button>Mercury</button>,
-          },
-          0.77: { label: <button>Venus</button> },
-          1: {
-            style: { backgroundColor: 'blue' },
-            label: <button>Earth</button>,
-          },
-          1.52: { label: <button>Mars</button> },
-          2.7: { label: <button>Astroid Belt</button> },
-          5.2: { label: <button>Jupiter</button> },
-          9.58: { label: <button>Saturn</button> },
-          19.14: { label: <button>Uranus</button> },
-          30.2: { label: <button>Neptune</button> },
-        }}
+        marks={generatePlanetMarks()}
         onChangeComplete={handleRangeChange}
       />
     </SliderWrapper>

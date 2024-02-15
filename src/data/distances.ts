@@ -1,11 +1,11 @@
-export const PlanetaryDistances = {
-  Mercurcy: 0.38,
-  Venus: 0.72,
-  Earth: 1,
-  Mars: 1.52,
-  'Astroid Belt': 2.7,
-  Jupiter: 5.2,
-  Saturn: 9.58,
-  Uranus: 19.14,
-  Neptune: 30.2,
-};
+export const PlanetaryDistances = [
+  { name: 'Mercurcy', distance: 0.38 },
+  { name: 'Venus', distance: 0.72 },
+  { name: 'Earth', distance: 1 },
+  { name: 'Mars', distance: 1.52 },
+  { name: 'Astroid Belt', distance: 2.7 },
+  { name: 'Jupiter', distance: 5.2 },
+  { name: 'Saturn', distance: 9.58 },
+  { name: 'Uranus', distance: 19.14 },
+  { name: 'Neptune', distance: 30.2 },
+];

@@ -8,8 +8,8 @@ export const GlobalStyles = createGlobalStyle`
   --color-background: #1a171e;
    --color-background-light: #33252f;
 
-  --color-text: #f9fafb;
-  --color-text-secondary: #6b7280;
+  --color-text: #d1d5db;
+  --color-text-secondary: #9ca3af;
 
   --color-primary: #e92d77;
   --color-primary-dark: #b91f5b;
@@ -28,7 +28,7 @@ export const GlobalStyles = createGlobalStyle`
   --color-grey-600: #4b5563;
   --color-grey-700: #374151;
   --color-grey-800: #1f2937;
-  --color-grey-900: #111827;
+  --color-grey-900: #1a171e;
 
 
   --font-family-main: 'Lato';
@@ -51,5 +51,19 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+.bold{
+  font-weight: 700
+}
+
+.highlight {
+  background-color: var(--color-grey-800);
+  padding: 2px 4px;
+  border-radius: 1px;
+}
+
+.whisper{
+  color: var(--color-text-secondary);
 }
 `;

@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import { JPL_API_Key, JPL_API_URL } from '../types/constant';
+import { JPL_API_URL } from '../types/constant';
 
-export function useGetBodies() {
+export function useGetBodiesCount() {
   const {
     isLoading: bodiesLoading,
     data: bodiesData,
     error: bodiesError,
   } = useQuery({
     queryKey: ['bodies'],
-    queryFn: getTotalBodies,
+    queryFn: TEMPgetTotalBodies,
   });
 
   return {
@@ -20,11 +20,11 @@ export function useGetBodies() {
 
 async function getTotalBodies() {
   const response = await fetch(JPL_API_URL, {
+    mode: 'cors',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      api_key: JPL_API_Key,
     },
   });
 
@@ -34,4 +34,15 @@ async function getTotalBodies() {
 
   const data = response.json();
   return data;
+}
+
+// TODO: move to use real API
+function TEMPgetTotalBodies() {
+  return {
+    signature: {
+      source: 'NASA/JPL SBDB (Small-Body DataBase) Query API',
+      version: '1.0',
+    },
+    count: 1353312,
+  };
 }

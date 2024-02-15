@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BodyType } from '../types/types';
-import LargeSquareButton from './LargeSquareButton';
+import LargeSquareButton from './Button';
 
 const bodyTypes: BodyType[] = [
   'Planet',

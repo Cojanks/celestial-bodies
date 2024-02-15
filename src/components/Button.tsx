@@ -2,21 +2,21 @@ import { PropsWithChildren, SyntheticEvent } from 'react';
 import styled from 'styled-components';
 
 type ButtonType = {
-  handleOnClick: (e: SyntheticEvent) => void;
+  handleOnClick?: (e: SyntheticEvent) => void;
   isActive?: boolean;
+  disabled?: boolean;
 } & PropsWithChildren;
 
 const ButtonContainer = styled.button`
   background-color: transparent;
   font-family: var(--font-family-main);
   cursor: pointer;
-  font-size: 1.5rem;
-  font-weight: 300;
+  font-size: 0.9rem;
+
+  padding: 2px 10px 4px 10px;
   color: var(--color-text);
   border: 1px solid var(--color-text);
   border-radius: 5px;
-  padding: 50px;
-  margin: 20px;
   transition: ease 0.2s transform;
 
   &.active {
@@ -25,24 +25,32 @@ const ButtonContainer = styled.button`
     font-weight: 500;
   }
 
-  &:hover {
+  &:hover:not([disabled]) {
     transform: scale(1.1);
+  }
+
+  &:disabled {
+    color: var(--color-text-secondary);
+    border-color: var(--color-text-secondary);
+    cursor: not-allowed;
   }
 `;
 
-function LargeSquareButton({
+function Button({
   isActive = false,
   handleOnClick,
+  disabled = false,
   children,
 }: ButtonType) {
   return (
     <ButtonContainer
       className={`${isActive && 'active'} `}
       onClick={handleOnClick}
+      disabled={disabled}
     >
       {children}
     </ButtonContainer>
   );
 }
 
-export default LargeSquareButton;
+export default Button;
