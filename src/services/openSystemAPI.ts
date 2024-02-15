@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { JPL_API_Key, JPL_API_URL } from '../types/constant';
 
 export function useGetBodies() {
   const {
@@ -7,7 +8,7 @@ export function useGetBodies() {
     error: bodiesError,
   } = useQuery({
     queryKey: ['bodies'],
-    queryFn: getBodies,
+    queryFn: getTotalBodies,
   });
 
   return {
@@ -17,10 +18,15 @@ export function useGetBodies() {
   };
 }
 
-async function getBodies() {
-  const response = await fetch(
-    'https://api.le-systeme-solaire.net/rest/bodies/'
-  );
+async function getTotalBodies() {
+  const response = await fetch(JPL_API_URL, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      api_key: JPL_API_Key,
+    },
+  });
 
   if (!response.ok) {
     throw new Error('Network response was not ok');

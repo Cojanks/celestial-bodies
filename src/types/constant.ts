@@ -1,2 +1,2 @@
-export const OPENSYSTEM_API_URL =
-  'https://api.le-systeme-solaire.net/rest/bodies/';
+export const JPL_API_URL = 'https://ssd-api.jpl.nasa.gov/sbdb_query.api';
+export const JPL_API_Key = `${import.meta.env.VITE_JPL_API_KEY}`;
