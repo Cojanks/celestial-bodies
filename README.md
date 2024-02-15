@@ -1,7 +1,7 @@
 # Celestial Bodies Tracker
 
 Ayo Beltalowda!
-Looking to travel the system? Space is big but its also packed with rocks. Use this system to view all JPL tagged asteroids and meteors in any reagion of the Sol system.
+Looking to travel the system? Space is big but its also packed with aimless pieces of mass. Use this interface to view all JPL-tagged asteroids and meteors in any region of the Sol system.
 
 To use this tool:
 
@@ -23,6 +23,6 @@ UI:
 
 ### TODO:
 
-- Invalidate Query cache on change in order to rehydrate the table data
+- Invalidate Query cache on slider change in order to rehydrate the table data
 - Add new features?
 - Build cool and amazing things because why not
