@@ -6,8 +6,9 @@ Looking to travel the system? Space is big but its also packed with rocks. Use t
 To use this tool:
 
 - Clone this repo
-- Run `npm install`
+- run `npm install`
 - run `npm run dev` within the new directory
+- View project at [http://localhost:5173/]: <http://localhost:5173/>
 
 UI:
 
@@ -17,8 +18,8 @@ UI:
 ### Notes
 
 - This project was built in **React** using React Query, Styled Components, and utilizes an Ant Design table.
-- Data is collected via JPL's SBDB (Small-Body DataBase) API
-- Due to CORS, this project uses a proxy to query the API for local use. _Do not make excessive API calls (please)_
+- Data is collected via JPL's [SBDB (Small-Body DataBase) API]: <https://ssd-api.jpl.nasa.gov/doc/sbdb.html>
+- This project uses a proxy to query the API for local use. _Do not make excessive API calls (please)_ (CORS issue with localhost)
 
 ### TODO:
 
