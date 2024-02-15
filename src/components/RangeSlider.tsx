@@ -5,6 +5,8 @@ import Button from './Button';
 import { useState } from 'react';
 import { PlanetaryDistances } from '../data/distances';
 import Planet from './Planet';
+import { useRangeContext } from '../context/RangeContext';
+import { STARTING_RANGE } from '../types/constant';
 
 const SliderWrapper = styled.div`
   display: block;
@@ -43,7 +45,13 @@ const sliderCustomStyles = {
   },
 };
 
+const SliderOutline = styled.div`
+  margin: 20px 0px;
+  padding: 50px 0;
+`;
+
 function RangeSlider() {
+  const { dispatch } = useRangeContext();
   const [view, setview] = useState<'sol' | 'inner' | 'belt'>('inner');
 
   // Recalculate what planets to show, step values, etc.
@@ -54,8 +62,6 @@ function RangeSlider() {
       ? PlanetaryDistances.slice(0, 4)
       : PlanetaryDistances.slice(2, 6);
   const stepDistance = view === 'sol' ? 0.1 : 0.01;
-  const startingValues =
-    view === 'sol' ? [1.2, 4] : view === 'inner' ? [0.7, 1.3] : [1.6, 5];
 
   // Generate the marks obj that is used in the slider
   function generatePlanetMarks() {
@@ -70,8 +76,7 @@ function RangeSlider() {
 
   // Events
   function handleRangeChange(values: number | number[]) {
-    console.log('change complete');
-    console.log(values);
+    dispatch({ type: 'rangeChanged', payload: values });
   }
 
   return (
@@ -104,21 +109,23 @@ function RangeSlider() {
           Sol System
         </Button>
       </HeaderSection>
-      <Whisper>&lt;-- Sunward </Whisper>
-      <Slider
-        range
-        defaultValue={startingValues}
-        min={plantaryList[0].distance - 0.38}
-        max={plantaryList[plantaryList.length - 1].distance + 0.38}
-        step={stepDistance}
-        styles={sliderCustomStyles}
-        dotStyle={{
-          backgroundColor: 'var(--color-grey-400)',
-          border: '1px solid var(--color-grey-500)',
-        }}
-        marks={generatePlanetMarks()}
-        onChangeComplete={handleRangeChange}
-      />
+      <SliderOutline>
+        <Whisper>&lt;-- Sunward </Whisper>
+        <Slider
+          range
+          defaultValue={STARTING_RANGE}
+          min={plantaryList[0].distance - 0.38}
+          max={plantaryList[plantaryList.length - 1].distance + 0.38}
+          step={stepDistance}
+          styles={sliderCustomStyles}
+          dotStyle={{
+            backgroundColor: 'var(--color-grey-400)',
+            border: '1px solid var(--color-grey-500)',
+          }}
+          marks={generatePlanetMarks()}
+          onChangeComplete={handleRangeChange}
+        />
+      </SliderOutline>
     </SliderWrapper>
   );
 }

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import RangeSlider from '../components/RangeSlider';
 import Card from '../components/Card';
 import { useGetBodiesCount } from '../services/openSystemAPI';
+import DataTable from '../components/DataTable';
+import RangeProvider from '../context/RangeContext';
 
 const HomeContainer = styled.main`
   text-align: center;
@@ -16,14 +18,7 @@ const Subheader = styled.p`
 `;
 
 function Home() {
-  const { bodiesLoading, bodiesData, bodiesError } = useGetBodiesCount();
-
-  // console.log(bodiesLoading);
-  // console.log(bodiesData);
-  // console.log(bodiesError);
-
-  // if (bodiesLoading) return <div>loading...</div>;
-  // if (bodiesError) return <div>error</div>;
+  const { bodiesLoading, bodiesData } = useGetBodiesCount();
 
   return (
     <HomeContainer>
@@ -48,7 +43,10 @@ function Home() {
           <Subheader>Counting current solar bodies...</Subheader>
         )}
 
-        <RangeSlider />
+        <RangeProvider>
+          <RangeSlider />
+          <DataTable />
+        </RangeProvider>
       </Card>
     </HomeContainer>
   );
