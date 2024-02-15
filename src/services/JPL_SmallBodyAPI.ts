@@ -70,7 +70,7 @@ export function useGetBodiesInRange(classificationStr: string) {
     rangedBodiesError,
   };
 }
-
+// Trying to move this into the queryFn but its not passing the arguments, damn you React Query!
 async function getRangedBodies(classificationStr: string) {
   const response = await fetch(`${JPL_API_QUERY + classificationStr}`, {
     mode: 'cors',

@@ -2,7 +2,7 @@ import { ConfigProvider, Table, theme } from 'antd';
 import type { TableProps } from 'antd';
 import { OrbitClassifications } from '../data/distances';
 import { useRangeContext } from '../context/RangeContext';
-import { useGetBodiesInRange } from '../services/openSystemAPI';
+import { useGetBodiesInRange } from '../services/JPL_SmallBodyAPI';
 import Loader from './Loader';
 import styled from 'styled-components';
 

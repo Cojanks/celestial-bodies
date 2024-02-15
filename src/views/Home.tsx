@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import RangeSlider from '../components/RangeSlider';
 import Card from '../components/Card';
-import { useGetBodiesCount } from '../services/openSystemAPI';
+import { useGetBodiesCount } from '../services/JPL_SmallBodyAPI';
 import DataTable from '../components/DataTable';
 import RangeProvider from '../context/RangeContext';
 
